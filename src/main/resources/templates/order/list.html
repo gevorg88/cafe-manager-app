@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"></div>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-4">
+            <img th:src="@{/image/logo.png}" class="img-responsive" alt=""/>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-5 pull-left">
+            <h2>Orders</h2>
+        </div>
+        <div class="col-md-12" th:if="${null == error}">
+            <div class="col-md-4 pull-right">
+                <button class="btn btn-primary add-instance" id="add-product" data-href="/order"
+                        data-modal-id="order-create-modal">Add Order
+                </button>
+            </div>
+            <div class="table-responsive col-md-10">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order, iterator : ${orders}" class="instance-wrapper">
+                        <td>
+                            <span class="btn collapsed" data-toggle="collapse" th:href="${'#products-' + iterator.index}" aria-expanded="false" aria-controls="products" th:text="${iterator.index + 1 + '(Click to see products)'}"></span>
+                            <div th:id="${'products-' + iterator.index}" class="collapse" style="height: 0">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:with="pios = ${order.productsInOrders}">
+                                    <tr th:each="pio : ${pios}">
+                                        <td th:text="${pio.product.name}"></td>
+                                        <td>
+                                            <input type="number" name="amount" th:value="${pio.amount}">
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-danger btn-xs instance-delete" th:data-href="@{'/orders/' + ${order.id} +  '/pio/' + ${pio.id}}">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </a>
+                                            <a class="btn btn-primary btn-xs edit-instance" th:data-href="@{'/orders/' + ${order.id} +  '/pio/' + ${pio.id}}">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                        <td>
+                            <select name="status" class="order-status" th:data-href="@{'/orders/change-status/' + ${order.id}}">
+                                <option
+                                        th:each="status: ${statuses}"
+                                        th:text="${status.value}"
+                                        th:value="${status.key}"
+                                        th:selected="${order.status.toString().equals(status.key)}">
+
+                                </option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-danger btn-xs instance-delete" th:data-href="'/orders/' + ${order.id}">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12 alert alert-danger" th:if="${null != error}" th:text="${error}"></div>
+    </div>
+</div>
+
+<div th:replace="common/header :: order-create-modal"/>
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>
+>

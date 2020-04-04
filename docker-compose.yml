@@ -1,0 +1,41 @@
+version: '3'
+services:
+  docker-mysql:
+    restart: always
+    container_name: docker-mysql
+    image: mysql
+    environment:
+      MYSQL_DATABASE: cafe_manager
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+#    volumes:
+#      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    healthcheck:
+      interval: 2s
+      timeout: 20s
+      retries: 10
+    networks:
+      - backend
+
+  cafe-manager-app:
+    restart: on-failure
+    build: ./
+    expose:
+      - "8080"
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/cafe_manager?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useLegacyDatetimeCode=false
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: pass
+    depends_on:
+      - docker-mysql
+    networks:
+      - backend
+
+
+networks:
+  backend:

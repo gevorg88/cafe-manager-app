@@ -1,0 +1,25 @@
+<div class="modal fade" tabindex="-1" role="dialog" th:fragment="create-modal" id="product-create-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Create Product</h4>
+            </div>
+            <div class="modal-body">
+                <p class="errors"></p>
+                <form id="user-create">
+                    <div class="form-group">
+                        <label for="name">Product Name</label>
+                        <input type="text" id="name" class="form-control" name="name" placeholder="Product Name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save-modal-data" data-href="/products">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

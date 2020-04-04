@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"></div>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-4">
+            <img th:src="@{/image/logo.png}" class="img-responsive" alt=""/>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <h1>Error</h1>
+        <h4>There is an error on requested page! Sorry!</h4>
+    </div>
+</div>
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

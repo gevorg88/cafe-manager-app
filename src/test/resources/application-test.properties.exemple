@@ -1,0 +1,27 @@
+spring.jpa.hibernate.ddl-auto=create
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.driver-class-name=
+spring.jpa.database-platform=
+spring.jpa.properties.hibernate.format_sql=
+spring.jpa.show-sql=
+spring.jpa.generate-ddl=
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.datasource.initialization-mode=always
+spring.flyway.enabled=false
+server.port=
+spring.thymeleaf.cache=false
+spring.thymeleaf.check-template=true
+spring.thymeleaf.check-template-location= true
+spring.thymeleaf.servlet.content-type= text/html
+spring.thymeleaf.enabled=true
+spring.thymeleaf.encoding=UTF-8
+spring.thymeleaf.mode=HTML
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+
+logging.level.root=warn
+logging.level.com.memorynotfound=debug
+logging.level.org.springframework.web=INFO
+logging.level.org.springframework.security=INFO

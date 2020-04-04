@@ -1,0 +1,42 @@
+<div class="modal fade" tabindex="-1" role="dialog" th:fragment="create-modal" id="order-create-modal"
+     xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Create Order</h4>
+            </div>
+            <div class="modal-body">
+                <p class="errors"></p>
+                <form id="order-create" class="col-md-12">
+                    <div class="form-group product-row">
+                        <div class="col-md-7">
+                            <label>Select Product</label>
+                            <select class="form-control" name="product[0][productId]" data-type="input" data-name="productId">
+                                <option
+                                        th:each="product, iterator:${products}"
+                                        th:selected="${0 == iterator.index}"
+                                        th:value="${product.id}"
+                                        th:text="${product.name}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Amount</label>
+                            <input class="form-control" name="product[0][amount]" type="number" min="1" data-type="input" data-name="amount" value="1">
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-primary center-block" id="product-cloner">
+                    <span>Add Product</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save-order" th:data-href="@{'/orders/create/' + ${table.id}}">Save</button>
+                <input type="hidden" class="save-modal-data">
+            </div>
+        </div>
+    </div>
+</div>

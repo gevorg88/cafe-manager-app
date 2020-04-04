@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"></div>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-4">
+            <img th:src="@{/image/logo.png}" class="img-responsive" alt=""/>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-5 pull-left">
+            <h2>Assigned Tables</h2>
+        </div>
+        <div class="table-responsive col-md-10">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Table Name</th>
+                    <th>Is Open</th>
+                    <th>Manage Orders</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="table: ${tables}" class="instance-wrapper">
+                    <td>
+                        <span th:text="${table.name}"></span>
+                    </td>
+                    <td th:with="isOpen=${table.orderCount == 0}">
+                        <span th:text="${isOpen ? 'YES': 'NO'}"></span>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-primary btn-xs create-order"
+                           th:href="${'/orders/manage/' + table.id}">
+                            <i class="glyphicon glyphicon-cutlery"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/header :: table-create-modal"/>
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>

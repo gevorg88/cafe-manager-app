@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+
+<div class="container" id="login-section">
+    <img class="img-responsive" src="/image/wood.png" style="margin-top: -75px;"/>
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-xs-9 col-xs-offset-3">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab-2" data-toggle="tab">
+                        <span style="color: red;">Log in</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+
+                <!-- log in -->
+                <div class="tab-pane fade in active" id="tab-2">
+                    <div class="panel-group">
+                        <div class="panel panel-default" style="border: none;">
+                            <div class="panel-body"
+                                 style="background-color: #ededed; margin-top: 20px;">
+                                <form method="POST" th:action="@{/login}">
+                                    <div class="form-group">
+                                        <label for="newUsername">* Username: </label> <input
+                                            required="required" type="text" class="form-control"
+                                            id="newUsername" name="username"/>
+                                        <p style="color: #828282">Enter your username here.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">* Password: </label> <input
+                                            required="required" type="password" class="form-control"
+                                            id="password" name="password"/>
+                                        <p style="color: #828282">Enter the password that accompanies your username</p>
+                                    </div>
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                                    <button type="submit" class="btn btn-primary">Log in</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>

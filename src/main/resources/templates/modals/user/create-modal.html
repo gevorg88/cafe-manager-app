@@ -1,0 +1,38 @@
+<div class="modal fade" tabindex="-1" role="dialog" th:fragment="create-modal" id="user-create-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Create User</h4>
+            </div>
+            <div class="modal-body">
+                <p class="errors"></p>
+                <form id="user-create">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" class="form-control" name="firstName"
+                               placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" class="form-control" name="lastName" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" class="form-control" name="email" placeholder="Email">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save-modal-data" data-href="/users">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
